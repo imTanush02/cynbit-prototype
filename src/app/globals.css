@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* ─── Cynbit Technologies Design System ─────────────────────────────────── */
+/* Clean Modern Editorial Palette · Deep Pine Teal (#006067) & Mint / Obsidian */
+
+:root {
+  --background: #FBFDFD;
+  --foreground: #111827;
+  --surface: #FFFFFF;
+  --border: rgba(0, 96, 103, 0.12);
+  --border-hover: rgba(0, 96, 103, 0.25);
+  --primary-teal: #006067;
+  --primary-teal-hover: #004e54;
+  --accent-peach: #FEEAD2;
+  --accent-peach-text: #4A2800;
+  --accent-sky: #DCEBFC;
+  --accent-blue: #1E40AF;
+}
+
+.dark,
+[data-theme="dark"],
+html.dark,
+html[data-theme="dark"] {
+  --background: #060D10;
+  --foreground: #F1F5F9;
+  --surface: #0C171C;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --primary-teal: #2DD4BF;
+  --primary-teal-hover: #14B8A6;
+  --accent-peach: #78350F;
+  --accent-peach-text: #FED7AA;
+  --accent-sky: #1E3A5F;
+  --accent-blue: #93C5FD;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 96, 103, 0.2) transparent;
+}
+
+.dark *,
+[data-theme="dark"] * {
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: rgba(0, 96, 103, 0.2);
+  color: #006067;
+}
+
+.dark ::selection,
+[data-theme="dark"] ::selection {
+  background: rgba(45, 212, 191, 0.25);
+  color: #2DD4BF;
+}
+
+/* ─── Custom Scrollbar (WebKit) ──────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 96, 103, 0.2);
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb,
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 96, 103, 0.35);
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Radial Gradient Utility ────────────────────────────────────────────── */
+
+.bg-gradient-radial {
+  background: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 4.5s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
