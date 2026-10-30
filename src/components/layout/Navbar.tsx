@@ -40,7 +40,7 @@ export default function Navbar({
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300",
-        "backdrop-blur-md border-b",
+        "backdrop-blur border-b",
         isScrolled
           ? "bg-[#FBFDFD]/90 dark:bg-[#060D10]/90 border-gray-200/80 dark:border-white/10 shadow-md shadow-[#006067]/5"
           : "bg-[#FBFDFD]/80 dark:bg-[#060D10]/80 border-gray-200/50 dark:border-white/[0.06]"
@@ -71,7 +71,7 @@ export default function Navbar({
               >
                 <button
                   className={cn(
-                    "inline-flex items-center gap-1.5 py-2 text-xs font-semibold uppercase tracking-wider transition-colors",
+                    "relative inline-flex group items-center gap-1.5 py-2 text-xs font-semibold uppercase tracking-wider transition-colors",
                     openDropdown === link.label
                       ? "text-[#006067] dark:text-[#2DD4BF]"
                       : "text-gray-700 hover:text-[#006067] dark:text-gray-300 dark:hover:text-[#2DD4BF]"
@@ -80,8 +80,16 @@ export default function Navbar({
                   {link.label}
                   <ChevronDown
                     className={cn(
-                      "w-3 h-3 transition-transform duration-200 opacity-70",
+                      "w-3 h-4 transition-transform duration-500 opacity-70",
                       openDropdown === link.label && "rotate-180"
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-0 h-[1px] bg-[#006067] dark:bg-[#2DD4BF] rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)]",
+                      openDropdown === link.label
+                        ? "w-full"
+                        : "w-0 group-hover:w-full"
                     )}
                   />
                 </button>
@@ -103,9 +111,10 @@ export default function Navbar({
               <a
                 key={link.label}
                 href={link.href}
-                className="py-2 text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-[#006067] dark:text-gray-300 dark:hover:text-[#2DD4BF] transition-colors"
+                className="relative group py-2 text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-[#006067] dark:text-gray-300 dark:hover:text-[#2DD4BF] transition-colors"
               >
                 {link.label}
+                <span className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full bg-[#006067] dark:bg-[#2DD4BF] rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)]" />
               </a>
             )
           )}
